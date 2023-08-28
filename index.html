@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      select,
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #24a0ed;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #1b8fd7;
+        transition: 0.5s;
+      }
+      table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      th,
+      td {
+        border: 0.5px solid;
+      }
+      th {
+        height: 40px;
+        background-color: rgb(234, 234, 234);
+      }
+      label,
+      input {
+        display: block;
+      }
+      input {
+        width: 85%;
+        height: 25px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body class="body">
+    <div class="container">
+      <h2>Hitung Nilai Rata-rata</h2>
+      <form id="gradeForm">
+        <fieldset>
+          <legend>Data Mahasiswa</legend>
+
+          <label for="name">Nama:</label>
+          <input class="name" type="text" id="name" required />
+          <br />
+
+          <label for="course">Mata Kuliah:</label>
+          <input type="text" id="course" required />
+        </fieldset>
+        <br />
+
+        <fieldset>
+          <legend>Data Nilai</legend>
+
+          <label for="grade">Grade:</label>
+          <select id="grade">
+            <option value="">Pilih Grade</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+          </select>
+        </fieldset>
+        <br />
+
+        <button type="button" onclick="calculateAverage()">Hitung</button>
+      </form>
+      <table id="resultTable" style="width: 100%; margin-top: 20px">
+        <tr>
+          <th>Nama</th>
+          <th>Mata Kuliah</th>
+          <th>Grade</th>
+          <th>Nilai Rata-rata</th>
+        </tr>
+      </table>
+    </div>
+
+    <!-- <script>
+      function calculateAverage() {
+        const gradeValues = { A: 4, B: 3, C: 2, D: 1, E: 0 };
+        const name = document.getElementById("name").value;
+        const course = document.getElementById("course").value;
+        const selectedGrade = document.getElementById("grade").value;
+
+        if (selectedGrade in gradeValues) {
+          const gradeValue = gradeValues[selectedGrade];
+          const resultElement = document.getElementById("result");
+
+          // Assuming you want to calculate the average for one subject for now
+          const totalGradeValues = gradeValue;
+          const average = totalGradeValues / 1;
+
+          resultElement.innerHTML = `
+            Nama: ${name}<br>
+            Mata Kuliah: ${course}<br>
+            Grade: ${selectedGrade}<br>
+            Nilai Rata-rata: ${average.toFixed(2)}
+          `;
+        }
+      }
+    </script> -->
+    <script>
+      function calculateAverage() {
+        const gradeValues = {
+          A: 4,
+          B: 3,
+          C: 2,
+          D: 1,
+          E: 0,
+        };
+        let name = document.querySelector("#name").value;
+        let course = document.getElementById("course").value;
+        let selectedGrade = document.getElementById("grade").value;
+
+        if (selectedGrade in gradeValues) {
+          let gradeValue = gradeValues[selectedGrade];
+          let resultTable = document.getElementById("resultTable");
+
+          // Create a new row
+          let newRow = resultTable.insertRow(-1); // Insert at the second row (index -1)
+
+          // Insert cells into the new row
+          let nameCell = newRow.insertCell(0);
+          let courseCell = newRow.insertCell(1);
+          let gradeCell = newRow.insertCell(2);
+          let averageCell = newRow.insertCell(3);
+
+          // Calculate the average
+          let totalGradeValues = gradeValue;
+          let average = totalGradeValues / 1;
+
+          // Fill in the cells with data
+          nameCell.innerHTML = name;
+          courseCell.innerHTML = course;
+          gradeCell.innerHTML = selectedGrade;
+          averageCell.innerHTML = average.toFixed(2);
+
+          // Clear the form
+          document.getElementById("name").value = "";
+          document.getElementById("course").value = "";
+          document.getElementById("grade").value = "";
+        }
+      }
+    </script>
+  </body>
+</html>
